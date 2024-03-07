@@ -1,4 +1,4 @@
-Output file contains these columns 
+Output file will contain these columns 
 1) Country
 2) Year
 3) ISCOStandard (ISCO08,ISCO88)
