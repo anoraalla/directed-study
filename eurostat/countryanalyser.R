@@ -1,8 +1,10 @@
 library(dplyr)
 
-setwd("/home/anna/Downloads/DirectedStudy")
-codes<-read.table(file="csv-codes.csv", header=TRUE, sep=",")
-eurostat<-read.table(file="Eurostat.csv", header=TRUE, sep=",")
+#setwd("/home/anna/Downloads/DirectedStudy")
+setwd("/Users/kapsitis/workspace-public/directed-study/eurostat")
+
+codes <- read.table(file="csv-codes.csv", header=TRUE, sep=",")
+eurostat <- read.table(file="Eurostat.csv", header=TRUE, sep=",")
 # table(eurostat$YEAR[eurostat$COUNTRY=="RO"])
 Countries<-c("AT","BE","BG","CH","CY","CZ","DE","DK",
              "EE","EL","ES","EU27_2020","EU28","FI","FR","HR",
@@ -27,10 +29,21 @@ for (country in Countries) {
 }
 
 
+# 
+# new_df <- eurostat %>%
+#   mutate(ISCOStandard = ifelse(ISCO88_3D != "Not stated", "ISCO88", "ISCO08")) %>%
+#   select(COUNTRY, YEAR, ISCOStandard) %>%
+#   distinct()
+# 
+# #print(new_df)
+# write.csv(new_df, "output.csv", row.names = FALSE)
 
-new_df <- eurostat %>%
-  mutate(ISCOStandard = ifelse(ISCO88_3D != "Not stated", "ISCO88", "ISCO08")) %>%
-  select(COUNTRY, YEAR, ISCOStandard) %>%
-  distinct()
 
-print(new_df)
+valid_codes <- codes$ISCO08
+
+result_df <- eurostat %>%
+  group_by(COUNTRY, YEAR) %>%
+  summarise(ValidCodes = n_distinct(ISCO08_3D, na.rm = TRUE)) %>%
+  ungroup()
+
+write.csv(new_df, "output.csv", row.names = FALSE)
