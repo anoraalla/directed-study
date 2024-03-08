@@ -100,9 +100,9 @@ for (country in Countries) {
     MissingCodesTotalValues <- c(MissingCodesTotalValues, length(missing_codes))
     UnavailableCodesTotalValues <- c(UnavailableCodesTotalValues, length(unavailable_valid_codes))
     
-    ExtraCodesListValues <- c(ExtraCodesListValues, paste(extra_codes, collapse = ","))
-    MissingCodesListValues <- c(MissingCodesListValues, paste(missing_codes, collapse = ","))
-    UnavailableCodesListValues <- c(UnavailableCodesListValues, paste(unavailable_valid_codes, collapse = ","))
+    ExtraCodesListValues <- c(ExtraCodesListValues, paste(extra_codes, collapse = ";"))
+    MissingCodesListValues <- c(MissingCodesListValues, paste(missing_codes, collapse = ";"))
+    UnavailableCodesListValues <- c(UnavailableCodesListValues, paste(unavailable_valid_codes, collapse = ";"))
   }
 }
 
