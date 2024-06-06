@@ -72,12 +72,12 @@ australia_data <- filter(data, Country == "Australia")
 
 
 # Check to ensure 'Year' and 'gini index' columns accessibility
-if(!"Year" %in% names(australia_data) || !"Gini index" %in% names(australia_data)) {
+if(!"Year" %in% names(australia_data) || !"Gini" %in% names(australia_data)) {
   stop("Required columns are not present in the dataset.")
 }
 
 # Extract 'gini index' values into a vector and name them according to 'Year'
-gini <- australia_data$`Gini index`
+gini <- australia_data$`Gini`
 names(gini) <- australia_data$Year
 
 # Print the results to verify
@@ -85,6 +85,6 @@ print(australia_data)
 print(gini)
 
 
-interpolate_and_plot_gini(gini)
+p <- interpolate_and_plot_gini(gini)
 
-
+p
